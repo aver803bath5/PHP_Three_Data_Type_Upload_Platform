@@ -221,6 +221,7 @@ $(document).ready(function(){
 		}
 	});
 
+//Cancel File Change
 	$('body').on('keyup', $('.doc_file_change'), function(event) {
 		event.preventDefault();
 		var id = $('.doc_file_change').data('id');
@@ -273,9 +274,23 @@ $(document).ready(function(){
 				<td data-id= " + id + " class='pdf_download_times'>0</td>\
 				<td data-id= " + id + " class='odt_file'><a href=''></a></td>\
 				<td data-id= " + id + " class='odt_download_times'>0</td>\
-				<td><a href='delete.php?id=$id' class='btn btn-danger'>刪除</a></td>\
+				<td data-id= " + id + " class='delete_button'><button type='button' data-id= " + id + " class='btn btn-danger delete'>刪除</button></td>\
 				</tr>");
 			$('.topic_change[data-id='+id+']').focus();
 		});
 	});
+//Delete event
+	$('tbody').on('click', function(event) {
+		var target = $(event.target);
+		if (target.hasClass('delete')) {
+			if (confirm('確定要刪除嗎？')) {
+				var id = target.data('id');
+				$.post('./Delete.php', {id: id}, function(data, textStatus, xhr) {
+					$('td[data-id='+id+']').remove();
+				});
+			}
+		}
+	});
+
+
 })

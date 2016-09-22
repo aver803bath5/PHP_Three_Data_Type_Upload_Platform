@@ -49,7 +49,7 @@
 		echo "<td data-id='$id' class='pdf_download_times'>$row[file_pdf_download_times]</td>";
 		echo "<td data-id='$id' class='odt_file'>"."<a href='$row[file_odt]'download>".my_path_info($row[file_odt])['filename']."</a>"."</td>";
 		echo "<td data-id='$id' class='odt_download_times'>$row[file_odt_download_times]</td>";
-		echo "<td><a href='delete.php?id=$id' class='btn btn-danger'>刪除</a></td>";
+		echo "<td data-id='$id' class='delete_button'><button data-id='$id' type='button' class='btn btn-danger delete'>刪除</button></td>";
 		echo "</tr>";
 	}
 	echo "</table>";
