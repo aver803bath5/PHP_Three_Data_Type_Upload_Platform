@@ -39,7 +39,7 @@
 	
 	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 		$i = 0;
-		echo "<tr>";
+		echo "<tr data-id='$id'>";
 		$id = $row[file_id];
 		echo "<td data-id='$id' class='topic'>$row[file_topic]</td>";
 		echo "<td data-id='$id' class='time'>$row[file_time]</td>";

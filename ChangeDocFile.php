@@ -23,14 +23,13 @@ if (!in_array($file_type, $allow)) {
 		if (my_path_info($row[0])['filename'] == my_path_info($file[name])['filename']) {
 			echo "samefilename";
 			exit();
-		}else{
-			$target = './upload/'."$file[name]";
-			$now = $_POST[now];
-			$sql = "UPDATE files SET file_doc='$target', file_doc_download_times=0 , file_time='$now' WHERE file_id = $id";
-			if(move_uploaded_file($file[tmp_name], $target) && mysqli_query($con, $sql)){
-				echo "good";
-			};
 		}
+	}
+	$target = './upload/'."$file[name]";
+	$now = $_POST[now];
+	$sql = "UPDATE files SET file_doc='$target', file_doc_download_times=0 , file_time='$now' WHERE file_id = $id";
+	if(move_uploaded_file($file[tmp_name], $target) && mysqli_query($con, $sql)){
+		echo "good";
 	}
 }
 ?>
