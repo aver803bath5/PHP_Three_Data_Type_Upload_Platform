@@ -9,13 +9,14 @@
 	<script src="./js/all.js"></script>
 </head>
 <body>
-
-	<form action="fileUpload.php" method="POST" enctype="multipart/form-data" class="form-inline">
+	<form action="insert.php" method="POST" enctype="multipart/form-data" class="form-inline">
+		<span style="margin-left:1rem">主題：</span><input type="text" name="topic" class="form-control"><br>
 		<input type="file" name="file1" class="form-control"><button id="clearfile1" type="button" class="btn btn-danger">清除</button><br>
 		<input type="file" name="file2" class="form-control"><button id="clearfile2" type="button" class="btn btn-danger">清除</button><br>
 		<input type="file" name="file3" class="form-control"><button id="clearfile3" type="button" class="btn btn-danger">清除</button><br>
 		<input type="submit" class="btn btn-success" style="margin-left:1rem;margin-top:1rem">
 		<input type="reset" value="reset" class="btn btn-warning"  style="margin-top:1rem">
+		<a href='table.php'>檢視</a>
 	</form>
 	<table class="table">
 
