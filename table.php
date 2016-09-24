@@ -43,11 +43,11 @@
 		$id = $row[file_id];
 		echo "<td data-id='$id' class='topic'>$row[file_topic]</td>";
 		echo "<td data-id='$id' class='time'>$row[file_time]</td>";
-		echo "<td data-id='$id' class='doc_file'>"."<a href='$row[file_doc]' data-id='$id' class='doc_file_link' download>".my_path_info($row[file_doc])['filename']."</a>"."</td>";
+		echo "<td data-id='$id' class='doc_file'>"."<a href='./DocFileDownload.php?file=$row[file_doc]&id=$row[file_id]' data-id='$id' class='doc_file_link' target='_blank'>".my_path_info($row[file_doc])['filename']."</a>"."</td>";
 		echo "<td data-id='$id' class='doc_download_times'>$row[file_doc_download_times]</td>";
-		echo "<td data-id='$id' class='pdf_file'>"."<a href='$row[file_pdf]' data-id='$id' class='pdf_file_link' download>".my_path_info($row[file_pdf])['filename']."</a>"."</td>";
+		echo "<td data-id='$id' class='pdf_file'>"."<a href='./PdfFileDownload.php?file=$row[file_pdf]&id=$row[file_id]' data-id='$id' class='pdf_file_link'  target='_blank'>".my_path_info($row[file_pdf])['filename']."</a>"."</td>";
 		echo "<td data-id='$id' class='pdf_download_times'>$row[file_pdf_download_times]</td>";
-		echo "<td data-id='$id' class='odt_file'>"."<a href='$row[file_odt]' data-id='$id' class='odt_file_link' download>".my_path_info($row[file_odt])['filename']."</a>"."</td>";
+		echo "<td data-id='$id' class='odt_file'>"."<a href='./OdtFileDownload.php?file=$row[file_odt]&id=$row[file_id]' data-id='$id' class='odt_file_link' target='_blank'>".my_path_info($row[file_odt])['filename']."</a>"."</td>";
 		echo "<td data-id='$id' class='odt_download_times'>$row[file_odt_download_times]</td>";
 		echo "<td data-id='$id' class='delete_button'><button data-id='$id' type='button' class='btn btn-danger delete'>刪除</button></td>";
 		echo "</tr>";

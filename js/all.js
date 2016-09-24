@@ -119,7 +119,7 @@ $(document).ready(function(){
 			    type: 'POST',
 			    success: function(data){
 			    	if (data == "good") {
-			    		$('.doc_file[data-id='+id+']').html("<a href='./upload/" + new_value + "' data-id="+id+" class='doc_file_link' download>"+ new_value.split('.')[0] +"</a>");
+			    		$('.doc_file[data-id='+id+']').html("<a href='./DocFileDownload.php?file=./upload/" + new_value + "&id=" + id + "' data-id="+id+" class='doc_file_link' target='_blank'>"+ new_value.split('.')[0] +"</a>");
 						$('.doc_download_times[data-id='+id+']').html(0);
 						$('.time[data-id='+id+']').html(getTime());
 						check = 0;
@@ -160,7 +160,7 @@ $(document).ready(function(){
 			    type: 'POST',
 			    success: function(data){
 			    	if (data == "good") {
-			    		$('.pdf_file[data-id='+id+']').html("<a href='./upload/" + new_value + "' data-id="+id+" class='pdf_file_link' download>"+ new_value.split('.')[0] +"</a>");
+			    		$('.pdf_file[data-id='+id+']').html("<a href='./PdfFileDownload.php?file=./upload/" + new_value + "&id=" + id + "' data-id="+id+" class='pdf_file_link' target='_blank'>"+ new_value.split('.')[0] +"</a>");
 						$('.pdf_download_times[data-id='+id+']').html(0);
 						$('.time[data-id='+id+']').html(getTime());
 						check = 0;
@@ -201,7 +201,7 @@ $(document).ready(function(){
 			    type: 'POST',
 			    success: function(data){
 			    	if (data == "good") {
-			    		$('.odt_file[data-id='+id+']').html("<a href='./upload/" + new_value + "' data-id="+id+" class='odt_file_link' download>"+ new_value.split('.')[0] +"</a>");
+			    		$('.odt_file[data-id='+id+']').html("<a href='./OdtFileDownload.php?file=./upload/" + new_value + "&id=" + id + "' data-id="+id+" class='odt_file_link' target='_blank'>"+ new_value.split('.')[0] +"</a>");
 						$('.odt_download_times[data-id='+id+']').html(0);
 						$('.time[data-id='+id+']').html(getTime());
 						check = 0;
@@ -266,13 +266,13 @@ $(document).ready(function(){
 			id = data;
 			$('tbody').append("\
 				<tr data-id= " + id + ">\
-				<td data-id= " + id + " class='topic'></td>\
+				<td data-id= " + id + " class='topic'>雙擊我來新增標題</td>\
 				<td data-id= " + id + " class='time'>"+ getTime() +"</td>\
-				<td data-id= " + id + " class='doc_file'><a href=''></a></td>\
+				<td data-id= " + id + " class='doc_file'><a href=''></a>雙擊我新增檔案</td>\
 				<td data-id= " + id + " class='doc_download_times'>0</td>\
-				<td data-id= " + id + " class='pdf_file'><a href=''></a></td>\
+				<td data-id= " + id + " class='pdf_file'><a href=''></a>雙擊我新增檔案</td>\
 				<td data-id= " + id + " class='pdf_download_times'>0</td>\
-				<td data-id= " + id + " class='odt_file'><a href=''></a></td>\
+				<td data-id= " + id + " class='odt_file'><a href=''></a>雙擊我新增檔案</td>\
 				<td data-id= " + id + " class='odt_download_times'>0</td>\
 				<td data-id= " + id + " class='delete_button'><button type='button' data-id= " + id + " class='btn btn-danger delete'>刪除</button></td>\
 				</tr>");
@@ -293,30 +293,30 @@ $(document).ready(function(){
 		//下載次數
 		if (target.hasClass('doc_file_link')) {
 			var id = $(event.target).data('id');
-			$.post('./UpdateDocDownloadTimes.php', {id: id}, function(data, textStatus, xhr) {
-				$('.doc_download_times[data-id='+id+']').html(data);
-			});		
+			var file = $(event.target).attr('href');
+			setTimeout(function() {
+				$.get('./UpdateDocDownloadTimes.php', {id: id}, function(data, textStatus, xhr) {
+					$('.doc_download_times[data-id='+id+']').html(data);
+				});	
+			}, 500);
 		}
 
 		if (target.hasClass('pdf_file_link')) {
 			var id = $(event.target).data('id');
-			$.post('./UpdatePdfDownloadTimes.php', {id: id}, function(data, textStatus, xhr) {
-				$('.pdf_download_times[data-id='+id+']').html(data);
-			});	
-		}
-
-		if (target.hasClass('pdf_file_link')) {
-			var id = $(event.target).data('id');
-			$.post('./UpdatePdfDownloadTimes.php', {id: id}, function(data, textStatus, xhr) {
-				$('.pdf_download_times[data-id='+id+']').html(data);
-			});	
+			setTimeout(function() {
+				$.get('./UpdatePdfDownloadTimes.php', {id: id}, function(data, textStatus, xhr) {
+					$('.pdf_download_times[data-id='+id+']').html(data);
+				});	
+			}, 500);
 		}
 
 		if (target.hasClass('odt_file_link')) {
 			var id = $(event.target).data('id');
-			$.post('./UpdateOdtDownloadTimes.php', {id: id}, function(data, textStatus, xhr) {
-				$('.odt_download_times[data-id='+id+']').html(data);
-			});	
+			setTimeout(function() {
+				$.get('./UpdateOdtDownloadTimes.php', {id: id}, function(data, textStatus, xhr) {
+					$('.odt_download_times[data-id='+id+']').html(data);
+				});	
+			}, 500);
 		}
 	});
 })
