@@ -14,6 +14,9 @@ $file = $_FILES[pdf_file];
 //ÀË¬d¬O§_¬°docÀÉ
 $file_type = pathinfo($file[name], PATHINFO_EXTENSION);
 $allow = array('pdf');
+if ($file[size]>10485760) {
+	echo "oversize";
+}
 if (!in_array($file_type, $allow)) {
 	echo "notmytype";
 	exit();

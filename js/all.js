@@ -17,14 +17,14 @@ $(document).ready(function(){
 		if (event.keyCode == 13) {
 			var new_value = $(event.target).val();
 			if (old_value==new_value) {
-				alert('你幹嘛要用一樣的名字，87');
+				alert('取到跟以前一樣的名字囉！');
 				$('.topic[data-id='+id+']').html(old_value);
 				check = 0;
 				return false;
 			}
 			$.post('./ChangeTopic.php', {id: id, new_value: new_value, now: getTime()}, function(data, textStatus, xhr) {
 				if (data == "sametopicname") {
-					alert('標題重複了，87！');
+					alert('標題重複了啦XD');
 					$('.topic[data-id='+id+']').html(old_value);
 					check = 0;
 				}
@@ -99,7 +99,7 @@ $(document).ready(function(){
 
 		if (target.hasClass('doc_file_change')) {
 			if (old_value == new_value) {
-				alert('你好像上傳一樣的檔案囉87');
+				alert('你好像上傳一樣的檔案囉！');
 				$('.doc_file_change[data-id='+id+']').val('');
 				$('.doc_file[data-id='+id+']').html(old_link);
 				check = 0;
@@ -125,12 +125,17 @@ $(document).ready(function(){
 						check = 0;
 			    	}
 			    	if (data == 'notmytype') {
-			    		alert('Only WORD FILE 87');
+			    		alert('這格只能傳word檔唷！');
 			    		$('.doc_file[data-id='+id+']').html(old_link);
 			    		check = 0;
 			    	}
 			    	if (data == 'samefilename') {
-			    		alert('有同檔名的檔案存在了87');
+			    		alert('有同檔名的檔案存在囉！');
+			    		$('.doc_file[data-id='+id+']').html(old_link);
+			    		check = 0;
+			    	}
+			    	if (data == 'oversize') {
+			    		alert('最大檔案大小為10MB');
 			    		$('.doc_file[data-id='+id+']').html(old_link);
 			    		check = 0;
 			    	}
@@ -140,7 +145,7 @@ $(document).ready(function(){
 
 		if (target.hasClass('pdf_file_change')) {
 			if (old_value == new_value) {
-				alert('你好像上傳一樣的檔案囉87');
+				alert('你好像上傳一樣的檔案囉！');
 				$('.pdf_file_change').val('');
 				$('.pdf_file[data-id='+id+']').html(old_link);
 				check = 0;
@@ -166,12 +171,17 @@ $(document).ready(function(){
 						check = 0;
 			    	}
 			    	if (data == 'notmytype') {
-			    		alert('Only PDF FILE 87');
+			    		alert('這格只能傳pdf檔唷！');
 			    		$('.pdf_file[data-id='+id+']').html(old_link);
 			    		check = 0;
 			    	}
 			    	if (data == 'samefilename') {
-			    		alert('有同檔名的檔案存在了87');
+			    		alert('有同檔名的檔案存在囉！');
+			    		$('.pdf_file[data-id='+id+']').html(old_link);
+			    		check = 0;
+			    	}
+			    	if (data == 'oversize') {
+			    		alert('最大檔案大小為10MB');
 			    		$('.pdf_file[data-id='+id+']').html(old_link);
 			    		check = 0;
 			    	}
@@ -181,7 +191,7 @@ $(document).ready(function(){
 
 		if (target.hasClass('odt_file_change')) {
 			if (old_value == new_value) {
-				alert('你好像上傳一樣的檔案囉87');
+				alert('你好像上傳一樣的檔案囉！');
 				$('.odt_file_change').val('');
 				$('.doc_file[data-id='+id+']').html(old_link);
 				check = 0;
@@ -207,13 +217,18 @@ $(document).ready(function(){
 						check = 0;
 			    	}
 			    	if (data == 'notmytype') {
-			    		alert('Only PDF FILE 87');
+			    		alert('這格只能傳odt檔唷！');
 			    		$('.odt_file[data-id='+id+']').html(old_link);
 			    		check = 0;
 			    	}
 			    	if (data == 'samefilename') {
-			    		alert('有同檔名的檔案存在了87');
+			    		alert('有同檔名的檔案存在囉！');
 			    		$('.odt_file[data-id='+id+']').html(old_link);
+			    		check = 0;
+			    	}
+			    	if (data == 'oversize') {
+			    		alert('最大檔案大小為10MB');
+			    		$('.dot_file[data-id='+id+']').html(old_link);
 			    		check = 0;
 			    	}
 				}

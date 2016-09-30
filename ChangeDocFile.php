@@ -13,6 +13,9 @@ $file = $_FILES[doc_file];
 //檢查是否為doc檔
 $file_type = pathinfo($file[name], PATHINFO_EXTENSION);
 $allow = array('doc','docx');
+if ($file[size]>10485760) {
+	echo "oversize";
+}
 if (!in_array($file_type, $allow)) {
 	echo "notmytype";
 	exit();
